@@ -25,17 +25,16 @@ if ( !file.exists(datafile) ) {
 #Read and filter the table
 
 if ( !exists("electric_power_consumption_df") ) {
-  electric_power_consumption_raw<-read.table(datafile, sep=";", header = TRUE, na.strings=c("?"))
+  electric_power_consumption_df<-read.table(datafile, sep=";", header = TRUE, na.strings=c("?"))
   
   startDate<-ymd("2007-02-01")
   endDate<-ymd("2007-02-02")
   
   # For convenience convert to the dplyr table data.frame format
-  electric_power_consumption_df<-tbl_df(electric_power_consumption_raw) %>% 
+  electric_power_consumption_df<-tbl_df(electric_power_consumption_df) %>% 
     mutate(Date_dmy=dmy(Date))  %>% 
     filter(Date_dmy==startDate | Date_dmy ==endDate) %>%
     mutate(DateTime=Date_dmy+hms(Time))
-  rm("electric_power_consumption_raw")
 }
 
 #Plotting plot2
@@ -43,7 +42,7 @@ library(graphics)
 plot2<-function() {
   #par(mfcol=c(1,1))
   par(bg = rgb(241/255,246/255, 251/255))
-  with(electric_power_consumption_df, plot(Global_active_power~DateTime,ylab="Global Active Power (kilowatts)",col="black", type="l"))  
+  with(electric_power_consumption_df, plot(Global_active_power~DateTime,xlab="",ylab="Global Active Power (kilowatts)",col="black", type="l"))  
 }
 
 #Plotting plot2: actual plotting on each device
