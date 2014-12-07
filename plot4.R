@@ -44,7 +44,7 @@ if ( !exists("electric_power_consumption_df") ) {
 library(graphics)
 plot4 <- function() {
   par(mfcol = c(2, 2))
-  par(bg = rgb(241/255,246/255, 251/255))
+  #par(bg = rgb(241/255,246/255, 251/255))
   with(electric_power_consumption_df, {
     plot(Global_active_power ~ DateTime, xlab = "", ylab = "Global Active Power", col = "black", type = "l")
     # 
@@ -62,10 +62,11 @@ plot4 <- function() {
 }
 
 #Plotting plot4: actual plotting on each device
-windows()
+# The copying option commented out: png created from the window can have distortions
+#windows()
 plot4()
 # dev.copy(png, file="plot4.png", width=480, height=480) # this approach can result in distortions ...
-dev.off()
+#dev.off()
 png("plot4.png", width = 480, height = 480)
 plot4()
 dev.off()

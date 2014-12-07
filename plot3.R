@@ -42,7 +42,7 @@ if ( !exists("electric_power_consumption_df") ) {
 #Plotting plot3: definition
 plot3<-function() {
   par(mfcol=c(1,1))
-  par(bg = rgb(241/255,246/255, 251/255))
+  #par(bg = rgb(241/255,246/255, 251/255))
   with(electric_power_consumption_df,  {
     plot(Sub_metering_1~DateTime,xlab="", ylab="Energy sub metering", type="n")
     lines(Sub_metering_1~DateTime,ylab="Energy sub metering",col="black", type="l")
@@ -53,11 +53,12 @@ plot3<-function() {
 }
 
 #Plotting plot3: actual plotting on each device
+# The copying option commented out: png created from the window can have distortions
 library(graphics)
-windows()
+#windows()
 plot3()
 # dev.copy(png, file="plot3.png", width=480, height=480)
-dev.off()
+#dev.off()
 png("plot3.png", width = 480, height = 480)
 plot3()
 dev.off()

@@ -41,16 +41,17 @@ if ( !exists("electric_power_consumption_df") ) {
 #Plotting plot2
 library(graphics)
 plot2<-function() {
-  par(mfcol=c(1,1))
+  #par(mfcol=c(1,1))
   par(bg = rgb(241/255,246/255, 251/255))
   with(electric_power_consumption_df, plot(Global_active_power~DateTime,ylab="Global Active Power (kilowatts)",col="black", type="l"))  
 }
 
 #Plotting plot2: actual plotting on each device
-windows()
+# The copying option commented out: png created from the window can have distortions
+#windows()
 plot2()
 #dev.copy(png, file="plot2.png", width=480, height=480)
-dev.off()
+#dev.off()
 png("plot2.png", width = 480, height = 480)
 plot2()
 dev.off()

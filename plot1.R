@@ -44,7 +44,7 @@ if ( !exists("electric_power_consumption_df") ) {
 library(graphics)
 plot1<-function() {
   par(mfcol=c(1,1))
-  par(bg = rgb(241/255,246/255, 251/255))
+  #par(bg = rgb(241/255,246/255, 251/255))
   #par(cex.lab=0.8)
   with(electric_power_consumption_df, 
        hist(Global_active_power,xlab="Global Active Power (kilowatts)",ylab="Frequency",col="red",
@@ -52,10 +52,11 @@ plot1<-function() {
 }
 
 #Plotting plot1: actual plotting on each device
-windows()
+# The copying option commented out: png created from the window can have distortions
+#windows()
 plot1()
 #dev.copy(png, file="plot1.png", width=480, height=480)  # this approach can result in distortions ...
-dev.off()
+#dev.off()
 png("plot1.png", width = 480, height = 480)
 plot1()
 dev.off()
